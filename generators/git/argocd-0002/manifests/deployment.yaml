@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-0002
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: argocd-0002
+  template:
+    metadata:
+      labels:
+        app: argocd-0002
+    spec:
+      containers:
+      - image: quay.io/app-sre/nginx
+        name: argocd-0002
+        ports:
+        - containerPort: 80
