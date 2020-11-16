@@ -8,7 +8,7 @@ spec:
       repoURL: https://github.com/jopit/kube-gitops-apps.git
       revision: main
       directories:
-      - path: directory-discovery/*
+      - path: directory-discovery/apps/*
   template:
     metadata:
       name: '{{path.basename}}'
