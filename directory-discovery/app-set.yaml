@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: directory-discovery
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/jopit/kube-gitops-apps.git
+      revision: main
+      directories:
+      - path: directory-discovery/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: ""
+      source:
+        repoURL: https://github.com/jopit/kube-gitops-apps.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
