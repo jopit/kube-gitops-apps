@@ -1,0 +1,23 @@
+# The list generator specifies a literal list of argument values to the app spec template.
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: list
+spec:
+  generators:
+  - list:
+      elements:
+      - cluster: in-cluster
+        url: https://kubernetes.default.svc
+  template:
+    metadata:
+      name: '{{cluster}}-argocd-0001'
+    spec:
+      project: ""
+      source:
+        repoURL: https://github.com/jopit/kube-gitops-apps.git
+        targetRevision: HEAD
+        path: list/apps/argocd-001
+      destination:
+        server: '{{url}}'
+        namespace: default
