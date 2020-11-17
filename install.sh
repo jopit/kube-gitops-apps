@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+image=${IMAGE:=jspitman/argocd-applicationset:v0.0.1}
 current=$PWD
 
 kubectl create namespace argocd
@@ -9,6 +10,6 @@ cd $HOME/go/src/github.com/argoproj/argo-cd
 kubectl apply -n argocd --force -f manifests/install.yaml
 
 cd $HOME/go/src/github.com/argoproj/argoproj-labs/applicationset
-IMAGE="jspitman/argocd-applicationset:v0.0.1" make deploy
+IMAGE=$image make deploy
 
 cd $current
