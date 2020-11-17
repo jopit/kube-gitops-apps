@@ -17,7 +17,7 @@ spec:
       source:
         repoURL: https://github.com/jopit/kube-gitops-apps.git
         targetRevision: HEAD
-        path: list/apps/argocd-001
+        path: list/apps/argocd-0001
       destination:
         server: '{{url}}'
         namespace: default
